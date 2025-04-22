@@ -15,6 +15,13 @@ import (
 
 // GenerateKeyRSA genera una clave privada RSA y la guarda en formato PEM dentro del directorio 'arca'.
 func GenerateKeyRSA() (*rsa.PrivateKey, error) {
+
+	// --- Verificar si ya existe una clave privada ---
+	privKeyPath := filepath.Join(model.DataDir, model.PrivateKeyFileName)
+	if _, err := os.Stat(privKeyPath); err == nil {
+		return nil, fmt.Errorf("private key already exists at %s", privKeyPath)
+	}
+
 	// --- Generar Clave Privada ---
 	privateKey, err := rsa.GenerateKey(rand.Reader, model.KeyBits)
 	if err != nil {
@@ -25,9 +32,6 @@ func GenerateKeyRSA() (*rsa.PrivateKey, error) {
 	if err = os.MkdirAll(model.DataDir, 0755); err != nil {
 		return nil, fmt.Errorf("failed to create output directory %s: %w", model.DataDir, err)
 	}
-
-	// Construir la ruta completa del archivo de clave privada
-	privKeyPath := filepath.Join(model.DataDir, model.PrivateKeyFileName)
 
 	// --- Guardar Clave Privada en archivo PEM ---
 	privKeyFile, err := os.Create(privKeyPath) // Usar la ruta completa
@@ -51,6 +55,13 @@ func GenerateKeyRSA() (*rsa.PrivateKey, error) {
 
 // GenerateCSR genera un CSR y lo guarda en formato PEM dentro del directorio 'arca'.
 func GenerateCSR(client *model.Client, privateKey *rsa.PrivateKey) error {
+
+	// --- Verificar si ya existe un CSR ---
+	csrPath := filepath.Join(model.DataDir, model.CSRfileName)
+	if _, err := os.Stat(csrPath); err == nil {
+		return fmt.Errorf("CSR already exists at %s", csrPath)
+	}
+
 	// Datos del subject
 	subject := pkix.Name{
 		Country:      []string{"AR"},                    // C=AR (o client.CountryCode si existe)
@@ -75,9 +86,6 @@ func GenerateCSR(client *model.Client, privateKey *rsa.PrivateKey) error {
 	if err = os.MkdirAll(model.DataDir, 0755); err != nil {
 		return fmt.Errorf("failed to create output directory %s: %w", model.DataDir, err)
 	}
-
-	// Construir la ruta completa del archivo CSR
-	csrPath := filepath.Join(model.DataDir, model.CSRfileName)
 
 	// --- Guardar CSR en archivo PEM ---
 	csrFile, err := os.Create(csrPath) // Usar la ruta completa

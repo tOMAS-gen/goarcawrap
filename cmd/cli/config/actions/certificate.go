@@ -21,8 +21,8 @@ var (
 )
 
 var (
-	cuit = flag.String("cuit", "", "Numero de CUIT del cliente.")
-	commonName = flag.String("name", "", "Nombre común para el CSR.")
+	cuit             = flag.String("cuit", "", "Numero de CUIT del cliente.")
+	commonName       = flag.String("name", "", "Nombre común para el CSR.")
 	organizationName = flag.String("organization", "", "Nombre de la organización para el CSR.")
 )
 
@@ -102,7 +102,7 @@ func handleGenerate() {
 
 func handleViewCSR() {
 	// Leer el contenido del archivo CSR
-	csrBytes, err := goarcawrap.ViewCSR()
+	csrBytes, err := goarcawrap.GetCSR()
 	if err != nil {
 		// Manejar el caso específico de archivo no encontrado
 		if os.IsNotExist(err) {
@@ -118,6 +118,11 @@ func handleViewCSR() {
 	fmt.Println("\n--- Contenido de MiPedido.csr ---")
 	fmt.Println(string(*csrBytes)) // Convertir bytes a string para imprimir
 	fmt.Println("--- Fin del contenido ---")
+
+	// Indicar que el comando ha terminado exitosamente
+	fmt.Println("Una vez obtenido el certificado CST, se debe cargar en el portal de AFIP para obtener el archivo CRT.")
+	fmt.Println("Guardar el archivo CRT en la carpeta ARCA con el siguiente nombre: MiCertificado.crt")
+
 	os.Exit(0) // Salir exitosamente
 }
 

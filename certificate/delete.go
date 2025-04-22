@@ -4,19 +4,19 @@ import (
 	"fmt"
 
 	"github.com/tOMAS-gen/goarcawrap/model"
-	"github.com/tOMAS-gen/goarcawrap/util"
+	"github.com/tOMAS-gen/goarcawrap/utils"
 )
 
 func DeleteCertificate() error {
 	// Eliminar el archivo de clave privada
-	err := util.Remove(model.PrivateKeyFileName);
-	if err!= nil {
+	err := utils.Remove(model.PrivateKeyFileName)
+	if err != nil {
 		return fmt.Errorf("error al eliminar la clave privada: %w", err)
 	}
 
 	// Eliminar el archivo de certificado
-	err = util.Remove(model.CSRfileName);
-	if err!= nil {
+	err = utils.Remove(model.CSRfileName)
+	if err != nil {
 		return fmt.Errorf("error al eliminar el certificado: %w", err)
 	}
 

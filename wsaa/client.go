@@ -9,7 +9,6 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -171,7 +170,7 @@ func Client() (*string, error) {
 
 	// Añadir información del firmante (certificado y clave)
 	// Usar rand.Reader para la aleatoriedad necesaria en la firma
-	if err := signedData.AddSigner(cert, rsaPrivKey, pkcs7.SignerInfoConfig{}); err != nil {
+	if err = signedData.AddSigner(cert, rsaPrivKey, pkcs7.SignerInfoConfig{}); err != nil {
 		return nil, fmt.Errorf("Error al añadir el firmante al CMS: %v", err)
 	}
 
@@ -236,11 +235,10 @@ func Client() (*string, error) {
 	// Verificar si hubo un error HTTP (ej. 4xx, 5xx)
 	if httpResp.StatusCode >= 400 {
 		// Imprimir el cuerpo de la respuesta para diagnóstico
-		return nil, fmt.Errorf("Error HTTP %s recibido del servidor.\n Cuerpo de la respuesta cruda:\n %v", httpResp.StatusCode, string(respBodyBytes))
+		return nil, fmt.Errorf("Error HTTP %d recibido del servidor.\n Cuerpo de la respuesta cruda:\n %v", httpResp.StatusCode, string(respBodyBytes))
 	}
 
 	// Parsear la respuesta SOAP XML
-	log.Println("Parseando la respuesta SOAP...")
 	var soapResp SoapEnvelopeResponse
 	err = xml.Unmarshal(respBodyBytes, &soapResp)
 	if err != nil {

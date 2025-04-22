@@ -14,6 +14,8 @@ func Help() {
 	fmt.Fprintf(os.Stderr, "Opciones:\n\n")
 	// Mostrar certificate
 	helpCertificate()
+	// Mostrar WSAA
+	helpWsaa()
 	// Mostrar help
 	fmt.Fprintf(os.Stderr, "  -help -h		Genera una nueva clave privada y CSR.\n\n")
 	// Salir
