@@ -25,11 +25,7 @@ func GenerateCertificate(client *model.Client) error {
 }
 
 func GetCSR() (*[]byte, error) {
-	csr, err := certificate.ViewCSR()
-	if err != nil {
-		return nil, err
-	}
-	return csr, nil
+	return certificate.ViewCSR()
 }
 
 func DeleteCertificate() error {
@@ -42,19 +38,6 @@ func DeleteCertificate() error {
 	return nil
 }
 
-func LoginWSAA() (*model.WSAA, error) {
-	loginTicketResponse, err := wsaa.Authenticate()
-	if err != nil {
-		println(err.Error())
-		return nil, err
-	}
-	return loginTicketResponse, nil
-}
-
 func GetWSAA() (*model.WSAA, error) {
-	csr, err := wsaa.Read()
-	if err != nil {
-		return nil, err
-	}
-	return csr, nil
+	return wsaa.Get()
 }

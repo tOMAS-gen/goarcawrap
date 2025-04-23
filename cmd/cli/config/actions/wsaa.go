@@ -10,7 +10,7 @@ import (
 
 var (
 	wsaaCmd  = flag.Bool("wsaa", false, "Accede a las opciones de gestión de WSAA.")
-	login  = flag.Bool("login", false, "Inicia sesión en WSAA.")
+	get  = flag.Bool("get", false, "Obtener datos autenticación WSAA.")
 	view  = flag.Bool("view", false, "Ver información de WSAA.")
 )
 
@@ -24,14 +24,14 @@ func HandleWSAA() {
 
 func helpWsaa() {
 	fmt.Fprintf(os.Stderr, "  -%s [opciones]\n", "wsaa")
-	fmt.Fprintf(os.Stderr, "    -%s		%v\n", "login", "Inicia sesión en WSAA.")
+	fmt.Fprintf(os.Stderr, "    -%s		%v\n", "get", "Obtener datos autenticación WSAA.")
 	fmt.Fprintf(os.Stderr, "    -%s		%v\n\n", "view", "Ver información de WSAA.")
 }
 
 func handleWsaaActions() {
 	// Contar cuántas sub-acciones se especificaron
 	actionCount := 0
-	if *login {
+	if *get {
 		actionCount++
 	}
 	if *view {
@@ -40,26 +40,26 @@ func handleWsaaActions() {
 
 	// Validar que se haya especificado exactamente una sub-acción
 	if actionCount == 0 {
-		fmt.Fprintln(os.Stderr, "Error: Debes especificar una acción para -wsaa (ej: -login, -view).")
+		fmt.Fprintln(os.Stderr, "Error: Debes especificar una acción para -wsaa (ej: -get, -view).")
 		flag.Usage() // Muestra la ayuda general
 		os.Exit(1)
 	}
 	if actionCount > 1 {
-		fmt.Fprintln(os.Stderr, "Error: Solo puedes especificar una acción de certificado a la vez (-login o -view).")
+		fmt.Fprintln(os.Stderr, "Error: Solo puedes especificar una acción de certificado a la vez (-get o -view).")
 		os.Exit(1)
 	}
 
 	// Ejecutar la acción correspondiente
-	if *login {
-		handleLogin()
+	if *get {
+		handleGet()
 	} else if *view {
 		handleViewWSAA()
 	}
 	os.Exit(1)
 }
 
-func handleLogin() {
-	data, err := goarcawrap.LoginWSAA()
+func handleGet() {
+	data, err := goarcawrap.GetWSAA()
 	if err != nil {
 		fmt.Println("Error al iniciar sesión en WSAA:", err)
 		os.Exit(1)
