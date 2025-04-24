@@ -26,7 +26,7 @@ const (
 	// Duración del ticket solicitado (ej. +/- 10 minutos desde ahora)
 	ticketDuration = 10 * time.Minute
 	// Namespace del servicio WSAA
-	wsaaWsdlURL = model.URL + model.WsaaWsd
+	wsaaWsdlURL = model.URL_wsaa
 	// Namespace del servicio WSFE
 	serviceID = "wsfe"
 )
@@ -188,6 +188,7 @@ func Client() (*string, error) {
 	// --- PASO 4: INVOCAR AL WSAA ---
 	// Extraer la URL del endpoint del servicio desde la URL del WSDL
 	// Usualmente es la URL base sin "?WSDL"
+	println(wsaaWsdlURL)
 	endpointURL := wsaaWsdlURL
 	if wsdlQueryParam := "?WSDL"; len(endpointURL) > len(wsdlQueryParam) && endpointURL[len(endpointURL)-len(wsdlQueryParam):] == wsdlQueryParam {
 		endpointURL = endpointURL[:len(endpointURL)-len(wsdlQueryParam)]

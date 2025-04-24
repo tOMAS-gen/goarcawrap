@@ -1,4 +1,4 @@
-package feparamgettiposcbte
+package fecompultimoautorizado
 
 import (
 	"encoding/xml"
@@ -25,25 +25,25 @@ type FEHeaderInfo struct {
 }
 
 type Body struct {
-	FEParamGetTiposCbteResponse FEParamGetTiposCbteResponse `xml:"FEParamGetTiposCbteResponse"`
+	FECompUltimoAutorizadoResponse FECompUltimoAutorizadoResponse `xml:"FECompUltimoAutorizadoResponse"`
 }
 
-// FEParamGetTiposCbteResponse
-type FEParamGetTiposCbteResponse struct {
-	FEParamGetTiposCbteResult wsfev1_model.FEParamGetTiposCbteResult `xml:"FEParamGetTiposCbteResult"`
+// FECompUltimoAutorizadoResponse
+type FECompUltimoAutorizadoResponse struct {
+	FECompUltimoAutorizadoResult wsfev1_model.FECompUltimoAutorizadoResult `xml:"FECompUltimoAutorizadoResult"`
 }
 
-func Get() (*wsfev1_model.FEParamGetTiposCbteResult, error) {
+func Get(ptoVta int, cbteTipo int) (*wsfev1_model.FECompUltimoAutorizadoResult, error) {
 	// Obtener Auth
 	auth, err := goarcawrap.GetAuth()
 	if err != nil {
 		return nil, err
 	}
 	// Crear consulta
-	getTiposCbte := wsfev1_model.FEParamGetTiposCbte{DataAuth: *auth}
-	getTiposCbte.AddXMLNS()
+	compUltimoAutorizado := wsfev1_model.FECompUltimoAutorizado{DataAuth: *auth, PtoVta: ptoVta, CbteTipo: cbteTipo}
+	compUltimoAutorizado.AddXMLNS()
 	// Crear el xml
-	xmlRequest := wsfev1_request.DefaultXML(getTiposCbte)
+	xmlRequest := wsfev1_request.DefaultXML(compUltimoAutorizado)
 	// Enviar la consulta
 	response, err := wsfev1_api.SendSoapRequest(xmlRequest)
 	if err != nil {
@@ -57,5 +57,5 @@ func Get() (*wsfev1_model.FEParamGetTiposCbteResult, error) {
 		return nil, err
 	}
 	// Devolver la respuesta
-	return &envelope.Body.FEParamGetTiposCbteResponse.FEParamGetTiposCbteResult, nil
+	return &envelope.Body.FECompUltimoAutorizadoResponse.FECompUltimoAutorizadoResult, nil
 }

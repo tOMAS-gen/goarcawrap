@@ -1,6 +1,7 @@
 package wsfev1
 
 import (
+	fecompultimoautorizado "github.com/tOMAS-gen/goarcawrap/wsfev1/api/FECompUltimoAutorizado"
 	feparamgettiposcbte "github.com/tOMAS-gen/goarcawrap/wsfev1/api/FEParamGetTiposCbte"
 	wsfev1_model "github.com/tOMAS-gen/goarcawrap/wsfev1/model"
 )
@@ -41,9 +42,10 @@ import (
 
 // }
 
-// func FECompUltimoAutorizado() {
-
-// }
+// Retorna el ultimo comprobante autorizado para el tipo de comprobante / cuit / punto de venta ingresado / Tipo de Emisión
+func FECompUltimoAutorizado(ptoVta int, cbteTipo int) (*wsfev1_model.FECompUltimoAutorizadoResult, error) {
+	return fecompultimoautorizado.Get(ptoVta, cbteTipo)
+}
 
 // func FEDummy() {
 

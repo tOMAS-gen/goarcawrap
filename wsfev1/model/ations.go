@@ -7,6 +7,30 @@ const (
 	xmlns = "http://ar.gov.afip.dif.FEV1/"
 )
 
+// FECompUltimoAutorizado
+// Retorna el ultimo comprobante autorizado para el tipo de comprobante / cuit / punto de venta ingresado / Tipo de Emisión
+type FECompUltimoAutorizado struct {
+	XMLName  xml.Name `xml:"FECompUltimoAutorizado"`
+	XMLNS    string   `xml:"xmlns,attr"`
+	DataAuth Auth     `xml:"Auth"`
+	PtoVta   int      `xml:"PtoVta"`
+	CbteTipo int      `xml:"CbteTipo"`
+}
+
+func (f *FECompUltimoAutorizado) AddXMLNS() {
+	f.XMLNS = xmlns
+}
+
+// FECompUltimoAutorizadoResult
+type FECompUltimoAutorizadoResult struct {
+	XMLName  xml.Name `xml:"FECompUltimoAutorizadoResult"`
+	PtoVta   int      `xml:"PtoVta"`
+	CbteTipo int      `xml:"CbteTipo"`
+	CbteNro  int      `xml:"CbteNro"`
+	Errors   *[]Err   `xml:"Errors>Err"`
+	Events   *[]Evt   `xml:"Events>Evt"`
+}
+
 // FEParamGetTiposCbte
 // Recupera el listado de Tipos de Comprobantes utilizables en servicio de autorización.
 type FEParamGetTiposCbte struct {
@@ -15,9 +39,8 @@ type FEParamGetTiposCbte struct {
 	DataAuth Auth     `xml:"Auth"`
 }
 
-func (f *FEParamGetTiposCbte) Create(auth Auth) {
+func (f *FEParamGetTiposCbte) AddXMLNS() {
 	f.XMLNS = xmlns
-	f.DataAuth = auth
 }
 
 // FEParamGetTiposCbteResult
@@ -27,4 +50,3 @@ type FEParamGetTiposCbteResult struct {
 	Errors    *[]Err      `xml:"Errors>Err"`
 	Events    *[]Evt      `xml:"Events>Evt"`
 }
-

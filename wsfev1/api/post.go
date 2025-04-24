@@ -11,7 +11,7 @@ import (
 
 const (
 	// URL del endpoint del servicio WSFEV1
-	urlApi = model.URL + model.Wsfe1
+	urlApi = model.URL_wsfe1
 )
 
 // SendSoapRequest envía una solicitud SOAP al endpoint de WSFEV1.
