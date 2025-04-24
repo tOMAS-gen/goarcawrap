@@ -3,17 +3,20 @@ package model
 import "time"
 
 const (
-	DataDir            = "ARCA"               // Directorio base para guardar datos de clientes
-	PrivateKeyFileName = "MiClavePrivada.key" // Nombre para el archivo de clave privada
-	CSRfileName        = "MiPedido.csr"       // Nombre para el archivo CSR
-	CRTfileName        = "MiCertificado.crt"  // Nombre para el archivo CSR
-	KeyBits            = 2048                 // Tamaño de la clave RSA (mínimo 2048 para AFIP/ARCA)
-	ClientFileName     = "client.json"        // Nombre del archivo JSON
-	WSAAfileName       = "wsaa.json"          // Nombre del archivo JSON
+	DataDir            = "ARCA"                      // Directorio base para guardar datos de clientes
+	PrivateKeyFileName = "MiClavePrivada.key"        // Nombre para el archivo de clave privada
+	CSRfileName        = "MiPedido.csr"              // Nombre para el archivo CSR
+	CRTfileName        = "MiCertificado.crt"         // Nombre para el archivo CSR
+	KeyBits            = 2048                        // Tamaño de la clave RSA (mínimo 2048 para AFIP/ARCA)
+	ClientFileName     = "client.json"               // Nombre del archivo JSON
+	WSAAfileName       = "wsaa.json"                 // Nombre del archivo JSON
+	WsaaWsd            = "ws/services/LoginCms?WSDL" // URL del WSDL de WSAA
+	Wsfe1              = "wsfev1/service.asmx"
+	URL                = "https://wswhomo.afip.gov.ar/"
 )
 
 type Client struct {
-	CUIT             string `json:"cuit"`
+	CUIT             int64  `json:"cuit"`
 	CommonName       string `json:"commonName"`
 	OrganizationName string `json:"organizationName"`
 }

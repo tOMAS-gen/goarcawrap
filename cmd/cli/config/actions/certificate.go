@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/tOMAS-gen/goarcawrap"
 	"github.com/tOMAS-gen/goarcawrap/model"
@@ -85,8 +86,17 @@ func handleGenerate() {
 		os.Exit(1)
 	}
 
-	err := goarcawrap.GenerateCertificate(&model.Client{
-		CUIT:             *cuit,
+	cuitInt64, err := strconv.ParseInt(*cuit, 10, 64)
+
+	// Verificar si hubo un error durante la conversión
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error: No se pudo convertir el CUIT '%s' a int64: %v\n", *cuit, err)
+		// Aquí podrías manejar el error, por ejemplo, saliendo del programa
+		os.Exit(1)
+	}
+
+	err = goarcawrap.GenerateCertificate(&model.Client{
+		CUIT:             cuitInt64,
 		CommonName:       *commonName,
 		OrganizationName: *organizationName,
 	})

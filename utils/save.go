@@ -13,12 +13,6 @@ func SaveJson[T any](objet *T, nameFile string) error {
 	// Crear la ruta del directorio específico para el cliente usando su CUIT
 	clientDir := filepath.Join(model.DataDir)
 
-	// Verificar si el archivo ya existe
-	// Si existe, no lo sobrescribimos
-	if _, err := os.Stat(filepath.Join(clientDir, nameFile)); err == nil {
-		return fmt.Errorf("el archivo JSON del cliente ya existe en %s", clientDir)
-	}
-
 	// Construir la ruta completa al archivo JSON
 	filePath := filepath.Join(clientDir, nameFile)
 

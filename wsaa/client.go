@@ -26,7 +26,7 @@ const (
 	// Duración del ticket solicitado (ej. +/- 10 minutos desde ahora)
 	ticketDuration = 10 * time.Minute
 	// Namespace del servicio WSAA
-	wsaaWsdlURL = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms?WSDL"
+	wsaaWsdlURL = model.URL + model.WsaaWsd
 	// Namespace del servicio WSFE
 	serviceID = "wsfe"
 )
@@ -247,7 +247,8 @@ func Client() (*string, error) {
 		return nil, fmt.Errorf("Error al parsear la respuesta SOAP XML: %s\n Cuerpo de la respuesta cruda:\n %v", err, string(respBodyBytes))
 
 	}
-
+	// Imprimir el resultado
+	println(soapResp.Body.LoginCmsReturn.Result)
 	// --- PASO 5: DEVOLVER RESULTADO  ---
 	return &soapResp.Body.LoginCmsReturn.Result, nil
 }

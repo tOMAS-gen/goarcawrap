@@ -32,3 +32,6 @@ Thumbs.db
 
 # Archivos generados por este script específico (opcional, pero buena práctica)
 ARCA/
+
+#
+service.xml

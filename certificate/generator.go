@@ -67,7 +67,7 @@ func GenerateCSR(client *model.Client, privateKey *rsa.PrivateKey) error {
 		Country:      []string{"AR"},                    // C=AR (o client.CountryCode si existe)
 		Organization: []string{client.OrganizationName}, // O=subj_o
 		CommonName:   client.CommonName,                 // CN=subj_cn
-		SerialNumber: "CUIT " + client.CUIT,                 // serialNumber=CUIT subj_cuit
+		SerialNumber: "CUIT " + string(client.CUIT),                 // serialNumber=CUIT subj_cuit
 	}
 
 	// Plantilla para el CSR
