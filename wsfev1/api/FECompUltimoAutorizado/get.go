@@ -35,7 +35,7 @@ type FECompUltimoAutorizadoResponse struct {
 
 func Get(ptoVta int, cbteTipo int) (*wsfev1_model.FECompUltimoAutorizadoResult, error) {
 	// Obtener Auth
-	auth, err := goarcawrap.GetAuth()
+	auth, err := goarcawrap.GetAuth(wsfev1_api.ServiceID)
 	if err != nil {
 		return nil, err
 	}

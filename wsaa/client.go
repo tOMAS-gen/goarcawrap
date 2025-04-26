@@ -28,7 +28,7 @@ const (
 	// Namespace del servicio WSAA
 	wsaaWsdlURL = model.URL_wsaa
 	// Namespace del servicio WSFE
-	serviceID = "wsfe"
+	// serviceID = "wsfe"
 )
 
 // Estructura para el Login Ticket Request (TRA) XML
@@ -76,7 +76,7 @@ type LoginCmsResponse struct {
 	Result  string   `xml:"loginCmsReturn"` // Contiene el Login Ticket Response XML o un error SOAP Fault
 }
 
-func Client() (*string, error) {
+func Client(serviceID string) (*string, error) {
 	// Definir flags de línea de comandos (parámetros)
 	certPath := filepath.Join(model.DataDir, model.CRTfileName)
 	keyPath := filepath.Join(model.DataDir, model.PrivateKeyFileName)
@@ -188,7 +188,6 @@ func Client() (*string, error) {
 	// --- PASO 4: INVOCAR AL WSAA ---
 	// Extraer la URL del endpoint del servicio desde la URL del WSDL
 	// Usualmente es la URL base sin "?WSDL"
-	println(wsaaWsdlURL)
 	endpointURL := wsaaWsdlURL
 	if wsdlQueryParam := "?WSDL"; len(endpointURL) > len(wsdlQueryParam) && endpointURL[len(endpointURL)-len(wsdlQueryParam):] == wsdlQueryParam {
 		endpointURL = endpointURL[:len(endpointURL)-len(wsdlQueryParam)]

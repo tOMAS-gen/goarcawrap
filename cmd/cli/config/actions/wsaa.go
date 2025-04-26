@@ -6,12 +6,13 @@ import (
 	"os"
 
 	"github.com/tOMAS-gen/goarcawrap"
+	wsfev1_api "github.com/tOMAS-gen/goarcawrap/wsfev1/api"
 )
 
 var (
-	wsaaCmd  = flag.Bool("wsaa", false, "Accede a las opciones de gestión de WSAA.")
-	get  = flag.Bool("get", false, "Obtener datos autenticación WSAA.")
-	view  = flag.Bool("view", false, "Ver información de WSAA.")
+	wsaaCmd = flag.Bool("wsaa", false, "Accede a las opciones de gestión de WSAA.")
+	get     = flag.Bool("get", false, "Obtener datos autenticación WSAA.")
+	view    = flag.Bool("view", false, "Ver información de WSAA.")
 )
 
 func HandleWSAA() {
@@ -59,7 +60,7 @@ func handleWsaaActions() {
 }
 
 func handleGet() {
-	data, err := goarcawrap.GetWSAA()
+	data, err := goarcawrap.GetWSAA(wsfev1_api.ServiceID)
 	if err != nil {
 		fmt.Println("Error al iniciar sesión en WSAA:", err)
 		os.Exit(1)
@@ -71,8 +72,8 @@ func handleGet() {
 	os.Exit(1)
 }
 func handleViewWSAA() {
-	data, err := goarcawrap.GetWSAA()
-	if err!= nil {
+	data, err := goarcawrap.GetWSAA(wsfev1_api.ServiceID)
+	if err != nil {
 		fmt.Println("Error al obtener información de WSAA:", err)
 		os.Exit(1)
 	}

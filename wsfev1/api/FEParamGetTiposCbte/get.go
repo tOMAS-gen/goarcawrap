@@ -35,7 +35,7 @@ type FEParamGetTiposCbteResponse struct {
 
 func Get() (*wsfev1_model.FEParamGetTiposCbteResult, error) {
 	// Obtener Auth
-	auth, err := goarcawrap.GetAuth()
+	auth, err := goarcawrap.GetAuth(wsfev1_api.ServiceID)
 	if err != nil {
 		return nil, err
 	}

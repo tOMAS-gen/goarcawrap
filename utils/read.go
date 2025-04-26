@@ -19,7 +19,7 @@ func ReadJson[T any](nameFile string) (*T, error) {
 	// Verificar si el archivo
 	if _, err := os.Stat(filePath); os.IsNotExist(err) {
 		// Si el archivo no existe, es normal si aún no se ha guardado.
-		return data, nil // Devuelve mapa vacío, sin error
+		return nil, fmt.Errorf("el archivo de cliente %s no existe", filePath)
 	} else if err != nil {
 		// Otro error al verificar el archivo
 		return nil, fmt.Errorf("error al verificar el archivo de cliente %s: %w", filePath, err)

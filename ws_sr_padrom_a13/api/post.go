@@ -1,4 +1,4 @@
-package wsfev1_api
+package ws_sr_padrom_a13_api
 
 import (
 	"github.com/tOMAS-gen/goarcawrap/model"
@@ -7,8 +7,8 @@ import (
 
 const (
 	// URL del endpoint del servicio WSFEV1
-	urlApi    = model.URL_wsfe1
-	ServiceID = "wsfe"
+	urlApi    = model.URL_ws_sr_padron_a13
+	ServiceID = "ws_sr_padron_a13"
 )
 
 func SendSoapRequest(xmlRequestBody string) (string, error) {

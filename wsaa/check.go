@@ -13,7 +13,6 @@ func CheckExpirationTimeWSAA(wsaa *model.WSAA) bool {
 		return false
 	}
 	currentTime := time.Now().In(loc)
-	
 	// Comparar la hora actual con la hora de expiración del loginTicketResponse y devolver true si aún es válido
 	expirationTime := wsaa.ExpirationTime
 

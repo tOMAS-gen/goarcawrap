@@ -1,4 +1,3 @@
-// goarcawrap.go
 package goarcawrap
 
 import (
@@ -39,19 +38,19 @@ func DeleteCertificate() error {
 	return nil
 }
 
-func GetWSAA() (*model.WSAA, error) {
-	return wsaa.Get()
+func GetWSAA(serviceID string) (*model.WSAA, error) {
+	return wsaa.Get(serviceID)
 }
 
-func GetAuth() (*wsfev1_model.Auth, error) {
+func GetAuth(serviceID string) (*wsfev1_model.Auth, error) {
 	// Obtener WSAA
-	wsaa, err := GetWSAA()
-	if err!= nil {
+	wsaa, err := GetWSAA(serviceID)
+	if err != nil {
 		return nil, err
 	}
 	// Obtener Usuario
 	client, err := data.ReadClient()
-	if err!= nil {
+	if err != nil {
 		return nil, err
 	}
 	// Generar Auth
