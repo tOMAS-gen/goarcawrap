@@ -11,10 +11,10 @@ func GetCUIT(documento string) (*string, error) {
 	if documento == "" {
 		return nil, fmt.Errorf("El documento no puede estar vacio")
 	}
-	return ws_sr_padrom_a13_api.GetCUIT(documento)
+	return ws_sr_padrom_a13_api.GetCUIT_CUIL(documento)
 }
 
-func GetPerson(cuit_cuil string) (*ws_sr_padrom_a13_model.PersonaReturn, error) {
+func GetPerson(cuit_cuil string) (*ws_sr_padrom_a13_model.PersonaReturnA13, error) {
 	if cuit_cuil == "" {
 		return nil, fmt.Errorf("El CUIT/CUIL no puede estar vacio")
 	}

@@ -8,7 +8,7 @@ import (
 	ws_sr_padrom_a13_request "github.com/tOMAS-gen/goarcawrap/ws_sr_padrom_a13/request"
 )
 
-type Envelope struct {
+type EnvelopeGetCUIT_CUIL struct {
 	Body struct {
 		Response struct {
 			IdPersona string `xml:"idPersonaListReturn>idPersona"`
@@ -16,7 +16,7 @@ type Envelope struct {
 	} `xml:"Body"`
 }
 
-func GetCUIT(documento string) (*string, error) {
+func GetCUIT_CUIL(documento string) (*string, error) {
 	// Obtener Auth
 	auth, err := goarcawrap.GetAuth(ServiceID)
 	if err != nil {
@@ -37,7 +37,7 @@ func GetCUIT(documento string) (*string, error) {
 		return nil, err
 	}
 	// Parsear la respuesta
-	var envelope Envelope
+	var envelope EnvelopeGetCUIT_CUIL
 	// Parsear el XML en la estructura SoapEnvelope
 	err = xml.Unmarshal([]byte(response), &envelope)
 	if err != nil {

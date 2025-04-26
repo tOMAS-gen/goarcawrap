@@ -1,36 +1,36 @@
-package ws_sr_padrom_a13_api
+package ws_sr_constancia_inscripcion_api
 
 import (
 	"encoding/xml"
 
 	"github.com/tOMAS-gen/goarcawrap"
-	ws_sr_padrom_a13_model "github.com/tOMAS-gen/goarcawrap/ws_sr_padrom_a13/model"
-	ws_sr_padrom_a13_request "github.com/tOMAS-gen/goarcawrap/ws_sr_padrom_a13/request"
+	ws_sr_constancia_inscripcion_model "github.com/tOMAS-gen/goarcawrap/ws_sr_constancia_inscripcion/model"
+	ws_sr_constancia_inscripcion_request "github.com/tOMAS-gen/goarcawrap/ws_sr_constancia_inscripcion/request"
 )
 
 type EnvelopeGetPersona struct {
 	Body struct {
 		Response struct {
-			PersonaReturn ws_sr_padrom_a13_model.PersonaReturnA13 `xml:"personaReturn"`
+			PersonaReturn ws_sr_constancia_inscripcion_model.PersonaReturnA5 `xml:"personaReturn"`
 		} `xml:"getPersonaResponse"`
 	} `xml:"Body"`
 }
 
-func GetPerson(cuit_cuil string) (*ws_sr_padrom_a13_model.PersonaReturnA13, error) {
+func GetPersona(cuit_cuil string) (*ws_sr_constancia_inscripcion_model.PersonaReturnA5, error) {
 	// Obtener Auth
 	auth, err := goarcawrap.GetAuth(ServiceID)
 	if err != nil {
 		return nil, err
 	}
 	// Crear consulta
-	getPersona := ws_sr_padrom_a13_model.GetPersona{
+	getPersona := ws_sr_constancia_inscripcion_model.NewGetPersona(&ws_sr_constancia_inscripcion_model.GetPersona{
 		Token:            auth.Token,
 		Sign:             auth.Sign,
 		CuitRepresentada: auth.Cuit,
 		IdPersona:        cuit_cuil,
-	}
+	})
 	// Crear el xml
-	xmlRequest := ws_sr_padrom_a13_request.DefaultXML(getPersona)
+	xmlRequest := ws_sr_constancia_inscripcion_request.DefaultXML(getPersona)
 	// Enviar la consulta
 	response, err := SendSoapRequest(xmlRequest)
 	if err != nil {

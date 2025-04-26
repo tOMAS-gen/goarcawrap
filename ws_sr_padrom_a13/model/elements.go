@@ -57,10 +57,10 @@ type Persona struct {
 	TipoPersona               *string      `xml:"tipoPersona,omitempty"`
 }
 
-// PersonaReturn corresponde al complexType tns:personaReturn
+// PersonaReturnA13 corresponde al complexType tns:personaReturn
 // Este es el struct principal que probablemente necesites deserializar
 // desde la respuesta de GetPersona.
-type PersonaReturn struct {
+type PersonaReturnA13 struct {
 	XMLName  xml.Name  `xml:"personaReturn"`      // Opcional, podría venir sin el tag si está dentro de getPersonaResponse
 	Metadata *Metadata `xml:"metadata,omitempty"` // minOccurs="0"
 	Persona  *Persona  `xml:"persona,omitempty"`  // minOccurs="0"

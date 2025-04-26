@@ -1,4 +1,4 @@
-package ws_sr_padrom_a13_request
+package ws_sr_constancia_inscripcion_request
 
 import (
 	"encoding/xml"
@@ -13,21 +13,19 @@ const (
 
 // EnvelopeSoapEnv representa la estructura principal SOAP 1.2
 type EnvelopeSoapEnv struct {
-	XMLName xml.Name    `xml:"soapenv:Envelope"`
-	SoapEnv string      `xml:"xmlns:soapenv,attr"`
-	A13     string      `xml:"xmlns:a13,attr"`
-	Body    BodySoapEnv `xml:"soapenv:Body"`
+	XMLName xml.Name    `xml:"soap-env:Envelope"`
+	SoapEnv string      `xml:"xmlns:soap-env,attr"`
+	Body    BodySoapEnv `xml:"soap-env:Body"`
 }
 
 func (e *EnvelopeSoapEnv) DefaultEnvelopeSOAP12(body BodySoapEnv) {
 	e.SoapEnv = "http://schemas.xmlsoap.org/soap/envelope/"
-	e.A13 = "http://a13.soap.ws.server.puc.sr/"
 	e.Body = body
 }
 
 // BodySoapEnv contiene el cuerpo del mensaje SOAP
 type BodySoapEnv struct {
-	XMLName xml.Name    `xml:"soapenv:Body"`
+	XMLName xml.Name    `xml:"soap-env:Body"`
 	Content interface{} `xml:",any"`
 }
 
