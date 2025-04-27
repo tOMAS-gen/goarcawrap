@@ -21,7 +21,6 @@ func GetPersonV2(cuit_cuil string) (*ws_sr_constancia_inscripcion_model.PersonaR
 	return ws_sr_constancia_inscripcion_api.GetPersonaV2(cuit_cuil)
 }
 
-
 func GetPersonListV2(cuit_cuil []string) (*ws_sr_constancia_inscripcion_model.PersonaListReturnA5, error) {
 	if len(cuit_cuil) == 0 {
 		return nil, fmt.Errorf("Los CUIT/CUIL no puede estar vacio")	

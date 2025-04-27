@@ -3,7 +3,7 @@ package fecompultimoautorizado
 import (
 	"encoding/xml"
 
-	"github.com/tOMAS-gen/goarcawrap"
+	"github.com/tOMAS-gen/goarcawrap/wsaa"
 	wsfev1_api "github.com/tOMAS-gen/goarcawrap/wsfev1/api"
 	wsfev1_model "github.com/tOMAS-gen/goarcawrap/wsfev1/model"
 	wsfev1_request "github.com/tOMAS-gen/goarcawrap/wsfev1/request"
@@ -35,7 +35,7 @@ type FECompUltimoAutorizadoResponse struct {
 
 func Get(ptoVta int, cbteTipo int) (*wsfev1_model.FECompUltimoAutorizadoResult, error) {
 	// Obtener Auth
-	auth, err := goarcawrap.GetAuth(wsfev1_api.ServiceID)
+	auth, err := wsaa.GetAuth(wsfev1_api.ServiceID)
 	if err != nil {
 		return nil, err
 	}

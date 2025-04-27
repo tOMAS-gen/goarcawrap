@@ -3,9 +3,9 @@ package ws_sr_constancia_inscripcion_api
 import (
 	"encoding/xml"
 
-	"github.com/tOMAS-gen/goarcawrap"
 	ws_sr_constancia_inscripcion_model "github.com/tOMAS-gen/goarcawrap/ws_sr_constancia_inscripcion/model"
 	ws_sr_constancia_inscripcion_request "github.com/tOMAS-gen/goarcawrap/ws_sr_constancia_inscripcion/request"
+	"github.com/tOMAS-gen/goarcawrap/wsaa"
 )
 
 type EnvelopeGetPersonaV2 struct {
@@ -18,7 +18,7 @@ type EnvelopeGetPersonaV2 struct {
 
 func GetPersonaV2(cuit_cuil string) (*ws_sr_constancia_inscripcion_model.PersonaReturnA5, error) {
 	// Obtener Auth
-	auth, err := goarcawrap.GetAuth(ServiceID)
+	auth, err := wsaa.GetAuth(ServiceID)
 	if err != nil {
 		return nil, err
 	}

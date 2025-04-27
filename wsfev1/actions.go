@@ -68,7 +68,7 @@ func FECompUltimoAutorizado(ptoVta int, cbteTipo int) (*wsfev1_model.FECompUltim
 // }
 
 // Recupera el listado de Tipos de Comprobantes utilizables en servicio de autorización.
-func FEParamGetTiposCbte() (*wsfev1_model.FEParamGetTiposCbteResult, error) {
+func FEParamGetTiposCbte() (*[]wsfev1_model.CbteTipo, error) {
 	return feparamgettiposcbte.Get()
 }
 

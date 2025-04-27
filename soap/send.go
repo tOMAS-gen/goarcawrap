@@ -50,7 +50,7 @@ func SendSoapRequest(xmlRequestBody string, urlApi string) (string, error) {
 	// 7. Verificar el código de estado HTTP
 	//    Un código 2xx indica éxito, otros pueden indicar errores del lado del servidor.
 	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
-		return responseBodyString, fmt.Errorf("error en la respuesta del servidor (Código de estado: %d)", resp.StatusCode)
+		return responseBodyString, fmt.Errorf("error en la respuesta del servidor (Código de estado: %d) info: %v", resp.StatusCode, responseBodyString)
 	}
 
 	// 8. Devolver el cuerpo de la respuesta como string

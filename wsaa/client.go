@@ -247,8 +247,6 @@ func Client(serviceID string) (*string, error) {
 		return nil, fmt.Errorf("Error al parsear la respuesta SOAP XML: %s\n Cuerpo de la respuesta cruda:\n %v", err, string(respBodyBytes))
 
 	}
-	// Imprimir el resultado
-	println(soapResp.Body.LoginCmsReturn.Result)
 	// --- PASO 5: DEVOLVER RESULTADO  ---
 	return &soapResp.Body.LoginCmsReturn.Result, nil
 }

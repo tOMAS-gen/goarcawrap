@@ -1,62 +1,86 @@
 package goarcawrap
 
 import (
-	"github.com/tOMAS-gen/goarcawrap/certificate"
-	"github.com/tOMAS-gen/goarcawrap/data"
+	"github.com/tOMAS-gen/goarcawrap/functions"
+	function_model "github.com/tOMAS-gen/goarcawrap/functions/model"
 	"github.com/tOMAS-gen/goarcawrap/model"
 	"github.com/tOMAS-gen/goarcawrap/wsaa"
+	"github.com/tOMAS-gen/goarcawrap/wsfev1"
 	wsfev1_model "github.com/tOMAS-gen/goarcawrap/wsfev1/model"
 )
 
-func GenerateCertificate(client *model.Client) error {
-	privateKey, err := certificate.GenerateKeyRSA()
-	if err != nil {
-		return err
-	}
-	err = certificate.GenerateCSR(client, privateKey)
-	if err != nil {
-		return err
-	}
-	err = data.SaveClient(client)
-	if err != nil {
-		return err
-	}
-	return nil
+// Sector de funciones
+type a_functions struct {
 }
 
-func GetCSR() (*[]byte, error) {
-	return certificate.ViewCSR()
+// Funcione
+func Function() a_functions {
+	// Aquí podrías obtener datos de algún lado
+	info := a_functions{}
+	return info
 }
 
-func DeleteCertificate() error {
-	if err := data.DeleteClient(); err != nil {
-		return err
-	}
-	if err := certificate.DeleteCertificate(); err != nil {
-		return err
-	}
-	return nil
+// Obtener datos del cliente
+func (a_functions) GetClientData(docCuitCuil string) (*function_model.Client, error) {
+	return functions.GetClient(docCuitCuil)
 }
 
-func GetWSAA(serviceID string) (*model.WSAA, error) {
-	return wsaa.Get(serviceID)
+//
+// ---------------------------------------------------------------------------------------------
+//
+
+// Sector de funciones
+type a_wsfev1 struct {
 }
 
-func GetAuth(serviceID string) (*wsfev1_model.Auth, error) {
-	// Obtener WSAA
-	wsaa, err := GetWSAA(serviceID)
-	if err != nil {
-		return nil, err
-	}
-	// Obtener Usuario
-	client, err := data.ReadClient()
-	if err != nil {
-		return nil, err
-	}
-	// Generar Auth
-	return &wsfev1_model.Auth{
-		Token: wsaa.Token,
-		Sign:  wsaa.Sign,
-		Cuit:  client.CUIT,
-	}, nil
+// WSFFEV1
+func WSFFEV1() a_wsfev1 {
+	// Aquí podrías obtener datos de algún lado
+	info := a_wsfev1{}
+	return info
+}
+
+// Obtener tipos de comprobantes
+func (a_wsfev1) GetTiposCbte() (*[]wsfev1_model.CbteTipo, error) {
+	return wsfev1.FEParamGetTiposCbte()
+}
+
+//
+// ---------------------------------------------------------------------------------------------
+//
+
+// Sector de WSAA
+type a_wsaa struct {
+}
+
+// wsaa
+func WSAA() a_wsaa {
+	// Aquí podrías obtener datos de algún lado
+	info := a_wsaa{}
+	return info
+}
+
+// Generar credenciales
+func (a_wsaa) GenerateCertificate(client *model.Client) error {
+	return wsaa.GenerateCertificate(client)
+}
+
+// Obtener credenciales
+func (a_wsaa) GetCSR() (*[]byte, error) {
+	return wsaa.GetCSR()
+}
+
+// Eliminar credenciales
+func (a_wsaa) DeleteCertificate() error {
+	return wsaa.DeleteCertificate()
+}
+
+// Obtener WSAA
+func (a_wsaa) GetWSAA(serviceID string) (*model.WSAA, error) {
+	return wsaa.GetWSAA(serviceID)
+}
+
+// Autenticación WSAA
+func (a_wsaa) GetAuth(serviceID string) (*wsfev1_model.Auth, error) {
+	return wsaa.GetAuth(serviceID)
 }

@@ -7,7 +7,7 @@ import (
 	ws_sr_padrom_a13_model "github.com/tOMAS-gen/goarcawrap/ws_sr_padrom_a13/model"
 )
 
-func GetCUIT(documento string) (*string, error) {
+func GetCUIT_CUIL(documento string) (*string, error) {
 	if documento == "" {
 		return nil, fmt.Errorf("El documento no puede estar vacio")
 	}

@@ -3,9 +3,9 @@ package ws_sr_padrom_a13_api
 import (
 	"encoding/xml"
 
-	"github.com/tOMAS-gen/goarcawrap"
 	ws_sr_padrom_a13_model "github.com/tOMAS-gen/goarcawrap/ws_sr_padrom_a13/model"
 	ws_sr_padrom_a13_request "github.com/tOMAS-gen/goarcawrap/ws_sr_padrom_a13/request"
+	"github.com/tOMAS-gen/goarcawrap/wsaa"
 )
 
 type EnvelopeGetCUIT_CUIL struct {
@@ -18,7 +18,7 @@ type EnvelopeGetCUIT_CUIL struct {
 
 func GetCUIT_CUIL(documento string) (*string, error) {
 	// Obtener Auth
-	auth, err := goarcawrap.GetAuth(ServiceID)
+	auth, err := wsaa.GetAuth(ServiceID)
 	if err != nil {
 		return nil, err
 	}

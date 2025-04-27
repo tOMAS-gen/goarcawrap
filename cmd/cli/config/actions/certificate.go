@@ -6,8 +6,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/tOMAS-gen/goarcawrap"
 	"github.com/tOMAS-gen/goarcawrap/model"
+	"github.com/tOMAS-gen/goarcawrap/wsaa"
 )
 
 // Definimos los flags para las sub-acciones de certificado
@@ -95,7 +95,7 @@ func handleGenerate() {
 		os.Exit(1)
 	}
 
-	err = goarcawrap.GenerateCertificate(&model.Client{
+	err = wsaa.GenerateCertificate(&model.Client{
 		CUIT:             cuitInt64,
 		CommonName:       *commonName,
 		OrganizationName: *organizationName,
@@ -112,7 +112,7 @@ func handleGenerate() {
 
 func handleViewCSR() {
 	// Leer el contenido del archivo CSR
-	csrBytes, err := goarcawrap.GetCSR()
+	csrBytes, err := wsaa.GetCSR()
 	if err != nil {
 		// Manejar el caso específico de archivo no encontrado
 		if os.IsNotExist(err) {
@@ -137,7 +137,7 @@ func handleViewCSR() {
 }
 
 func handleDelete() {
-	err := goarcawrap.DeleteCertificate()
+	err := wsaa.DeleteCertificate()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error al eliminar el certificado:", err)
 		os.Exit(1)

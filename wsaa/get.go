@@ -8,7 +8,7 @@ import (
 
 var wsaa = make(map[string]model.WSAA)
 
-func Get(serviceID string) (*model.WSAA, error) {
+func get(serviceID string) (*model.WSAA, error) {
 	// Variable
 	var wsaaSend *model.WSAA
 	// Verificar si esta cargado
@@ -17,9 +17,9 @@ func Get(serviceID string) (*model.WSAA, error) {
 		// Remplazar
 		wsaaSend = &wsaaMap
 		// Si esta cargado, verificar si está vigente
-		if !CheckExpirationTimeWSAA(&wsaaMap) {
+		if !checkExpirationTimeWSAA(&wsaaMap) {
 			// Si no está vigente, renovar
-			wsaaAux, err := Authenticate(serviceID)
+			wsaaAux, err := authenticate(serviceID)
 			if err != nil {
 				return nil, err
 			}
@@ -28,7 +28,7 @@ func Get(serviceID string) (*model.WSAA, error) {
 		}
 	} else {
 		// Si no esta cargado, cargar
-		wsaaAux, err := read(serviceID)
+		wsaaAux, err := readAndVerify(serviceID)
 		if err != nil {
 			return nil, err
 		}
@@ -39,22 +39,21 @@ func Get(serviceID string) (*model.WSAA, error) {
 	return wsaaSend, nil
 }
 
-func read(serviceID string) (*model.WSAA, error) {
+func readAndVerify(serviceID string) (*model.WSAA, error) {
 	// Verificar si existe
-	wsaaAux, err := Read(serviceID)
+	wsaaAux, err := read(serviceID)
 	if err != nil {
 		// Si no existe, generar
-		return Authenticate(serviceID)
+		return authenticate(serviceID)
 	}
 	// Comprovar si está vigente
-	if !CheckExpirationTimeWSAA(wsaaAux) {
+	if !checkExpirationTimeWSAA(wsaaAux) {
 		// Si no está vigente, renovar
-		return Authenticate(serviceID)
+		return authenticate(serviceID)
 	}
 	// Devolver WSAA
 	return wsaaAux, nil
 }
-
 
 func PrintData() {
 	for key, value := range wsaa {

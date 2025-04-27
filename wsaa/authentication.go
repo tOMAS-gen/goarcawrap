@@ -6,7 +6,7 @@ import (
 	"github.com/tOMAS-gen/goarcawrap/model"
 )
 
-func Authenticate(serviceID string) (*model.WSAA, error) {
+func authenticate(serviceID string) (*model.WSAA, error) {
 	// --- Llamada al login ---
 	loginTicketResponse, err := Client(serviceID)
 	if err != nil {

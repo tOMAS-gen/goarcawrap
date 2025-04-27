@@ -6,7 +6,7 @@ import (
 	"github.com/tOMAS-gen/goarcawrap/model"
 )
 
-func CheckExpirationTimeWSAA(wsaa *model.WSAA) bool {
+func checkExpirationTimeWSAA(wsaa *model.WSAA) bool {
 	// Obtener la hora actual de la región horaria de Argentina
 	loc, err := time.LoadLocation("America/Argentina/Buenos_Aires")
 	if err != nil {

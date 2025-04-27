@@ -3,7 +3,7 @@ package feparamgettiposcbte
 import (
 	"encoding/xml"
 
-	"github.com/tOMAS-gen/goarcawrap"
+	"github.com/tOMAS-gen/goarcawrap/wsaa"
 	wsfev1_api "github.com/tOMAS-gen/goarcawrap/wsfev1/api"
 	wsfev1_model "github.com/tOMAS-gen/goarcawrap/wsfev1/model"
 	wsfev1_request "github.com/tOMAS-gen/goarcawrap/wsfev1/request"
@@ -33,9 +33,9 @@ type FEParamGetTiposCbteResponse struct {
 	FEParamGetTiposCbteResult wsfev1_model.FEParamGetTiposCbteResult `xml:"FEParamGetTiposCbteResult"`
 }
 
-func Get() (*wsfev1_model.FEParamGetTiposCbteResult, error) {
+func Get() (*[]wsfev1_model.CbteTipo, error) {
 	// Obtener Auth
-	auth, err := goarcawrap.GetAuth(wsfev1_api.ServiceID)
+	auth, err := wsaa.GetAuth(wsfev1_api.ServiceID)
 	if err != nil {
 		return nil, err
 	}
@@ -57,5 +57,5 @@ func Get() (*wsfev1_model.FEParamGetTiposCbteResult, error) {
 		return nil, err
 	}
 	// Devolver la respuesta
-	return &envelope.Body.FEParamGetTiposCbteResponse.FEParamGetTiposCbteResult, nil
+	return envelope.Body.FEParamGetTiposCbteResponse.FEParamGetTiposCbteResult.ResultGet, nil
 }
