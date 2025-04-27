@@ -21,14 +21,16 @@ func (f *FECompUltimoAutorizado) AddXMLNS() {
 	f.XMLNS = xmlns
 }
 
-// FECompUltimoAutorizadoResult
-type FECompUltimoAutorizadoResult struct {
-	XMLName  xml.Name `xml:"FECompUltimoAutorizadoResult"`
-	PtoVta   int      `xml:"PtoVta"`
-	CbteTipo int      `xml:"CbteTipo"`
-	CbteNro  int      `xml:"CbteNro"`
-	Errors   *[]Err   `xml:"Errors>Err"`
-	Events   *[]Evt   `xml:"Events>Evt"`
+// FECompUltimoAutorizadoResponse
+type FECompUltimoAutorizadoResponse struct {
+	XMLName                      xml.Name `xml:"FECompUltimoAutorizadoResponse"`
+	FECompUltimoAutorizadoResult struct {
+		PtoVta   int    `xml:"PtoVta"`
+		CbteTipo int    `xml:"CbteTipo"`
+		CbteNro  int    `xml:"CbteNro"`
+		Errors   *[]Err `xml:"Errors>Err"`
+		Events   *[]Evt `xml:"Events>Evt"`
+	} `xml:"FECompUltimoAutorizadoResult"`
 }
 
 // FEParamGetTiposCbte
@@ -43,10 +45,36 @@ func (f *FEParamGetTiposCbte) AddXMLNS() {
 	f.XMLNS = xmlns
 }
 
-// FEParamGetTiposCbteResult
-type FEParamGetTiposCbteResult struct {
-	XMLName   xml.Name    `xml:"FEParamGetTiposCbteResult"`
-	ResultGet *[]CbteTipo `xml:"ResultGet>CbteTipo"`
-	Errors    *[]Err      `xml:"Errors>Err"`
-	Events    *[]Evt      `xml:"Events>Evt"`
+// FEParamGetTiposCbteResponse
+type FEParamGetTiposCbteResponse struct {
+	XMLName                   xml.Name `xml:"FEParamGetTiposCbteResponse"`
+	FEParamGetTiposCbteResult struct {
+		ResultGet *[]CbteTipo `xml:"ResultGet>CbteTipo"`
+		Errors    *[]Err      `xml:"Errors>Err"`
+		Events    *[]Evt      `xml:"Events>Evt"`
+	} `xml:"FEParamGetTiposCbteResult"`
+}
+
+// FECAEAConsultar
+// Consultar CAEA emitidos.
+type FECAEAConsultar struct {
+	XMLName  xml.Name `xml:"FECAEAConsultar"`
+	XMLNS    string   `xml:"xmlns,attr"`
+	DataAuth Auth     `xml:"Auth"`
+	Periodo  int      `xml:"Periodo"`
+	Orden    int16    `xml:"Orden"`
+}
+
+func (f *FECAEAConsultar) AddXMLNS() {
+	f.XMLNS = xmlns
+}
+
+// FECAEAConsultarResponse
+type FECAEAConsultarResponse struct {
+	XMLName               xml.Name `xml:"FECAEAConsultarResponse"`
+	FECAEAConsultarResult struct {
+		ResultGet *FECAEAGet `xml:"ResultGet"`
+		Errors    *[]Err     `xml:"Errors>Err"`
+		Events    *[]Evt     `xml:"Events>Evt"`
+	} `xml:"FECAEAConsultarResult"`
 }

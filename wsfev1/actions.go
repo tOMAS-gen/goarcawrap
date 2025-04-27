@@ -1,8 +1,7 @@
 package wsfev1
 
 import (
-	fecompultimoautorizado "github.com/tOMAS-gen/goarcawrap/wsfev1/api/FECompUltimoAutorizado"
-	feparamgettiposcbte "github.com/tOMAS-gen/goarcawrap/wsfev1/api/FEParamGetTiposCbte"
+	wsfev1_api "github.com/tOMAS-gen/goarcawrap/wsfev1/api"
 	wsfev1_model "github.com/tOMAS-gen/goarcawrap/wsfev1/model"
 )
 
@@ -10,9 +9,9 @@ import (
 
 // The following operations are supported. For a formal definition, please review the Service Description.
 
-// func FECAEAConsultar() {
-
-// }
+func FECAEAConsultar(periodo int, orden int16) (*wsfev1_model.FECAEAConsultarResponse, error) {
+	return wsfev1_api.FECAEAConsultar(periodo, orden)
+}
 
 // func FECAEARegInformativo() {
 
@@ -43,8 +42,8 @@ import (
 // }
 
 // Retorna el ultimo comprobante autorizado para el tipo de comprobante / cuit / punto de venta ingresado / Tipo de Emisión
-func FECompUltimoAutorizado(ptoVta int, cbteTipo int) (*wsfev1_model.FECompUltimoAutorizadoResult, error) {
-	return fecompultimoautorizado.Get(ptoVta, cbteTipo)
+func FECompUltimoAutorizado(ptoVta int, cbteTipo int) (*wsfev1_model.FECompUltimoAutorizadoResponse, error) {
+	return wsfev1_api.FECompUltimoAutorizado(ptoVta, cbteTipo)
 }
 
 // func FEDummy() {
@@ -68,8 +67,8 @@ func FECompUltimoAutorizado(ptoVta int, cbteTipo int) (*wsfev1_model.FECompUltim
 // }
 
 // Recupera el listado de Tipos de Comprobantes utilizables en servicio de autorización.
-func FEParamGetTiposCbte() (*[]wsfev1_model.CbteTipo, error) {
-	return feparamgettiposcbte.Get()
+func FEParamGetTiposCbte() (*wsfev1_model.FEParamGetTiposCbteResponse, error) {
+	return wsfev1_api.FEParamGetTiposCbte()
 }
 
 // func FEParamGetTiposConcepto() {

@@ -40,10 +40,21 @@ func WSFFEV1() a_wsfev1 {
 	return info
 }
 
+// Consultar CAEA emitidos.
+func (a_wsfev1) SearchCAEA(periodo int, orden int16) (*wsfev1_model.FECAEAConsultarResponse, error) {
+	return wsfev1.FECAEAConsultar(periodo, orden)
+}
+
 // Obtener tipos de comprobantes
-func (a_wsfev1) GetTiposCbte() (*[]wsfev1_model.CbteTipo, error) {
+func (a_wsfev1) GetTiposCbte() (*wsfev1_model.FEParamGetTiposCbteResponse, error) {
 	return wsfev1.FEParamGetTiposCbte()
 }
+
+// Ultimo comprobante autorizado
+func (a_wsfev1) GetUltimoCompAutorizado(ptoVta int, cbteTipo int) (*wsfev1_model.FECompUltimoAutorizadoResponse, error) {
+	return wsfev1.FECompUltimoAutorizado(ptoVta, cbteTipo)
+}
+
 
 //
 // ---------------------------------------------------------------------------------------------

@@ -32,3 +32,22 @@ type CbteTipo struct {
 	FchDesde string   `xml:"FchDesde"` // Fecha desde
 	FchHasta *string  `xml:"FchHasta"` // Fecha hasta
 }
+
+// FECAEAGet contiene los datos específicos de un CAEA.
+type FECAEAGet struct {
+	CAEA          string `xml:"CAEA"`        // Código de Autorización Electrónica de Ambito Ambiental (CAEA)
+	Periodo       int    `xml:"Periodo"`     // Periodo del CAEA
+	Orden         int16  `xml:"Orden"`       // Orden del CAEA
+	FchVigDesde   string `xml:"FchVigDesde"` // Fecha de inicio de vigencia del CAEA
+	FchVigHasta   string `xml:"FchVigHasta"` // Fecha de fin de vigencia del CAEA
+	FchTopeInf    string `xml:"FchTopeInf"`  // Fecha de tope inferior del CAEA
+	FchProceso    string `xml:"FchProceso"`  // Fecha de proceso del CAEA
+	Observaciones *[]Obs `xml:"Observaciones>Obs"` // Observaciones del CAEA
+}
+
+// Obs representa una observación individual con su código y mensaje.
+type Obs struct {
+	XMLName xml.Name `xml:"Obs"`
+	Code    int      `xml:"Code"` // Código de la observación
+	Msg     string   `xml:"Msg"`  // Mensaje descriptivo de la observación
+}
