@@ -6,21 +6,18 @@ import (
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/fe"
 )
 
-func FECompUltimoAutorizado(ptoVta int, cbteTipo int) (*fe.FECompUltimoAutorizadoResponse, error) {
+func FECompTotXRequest() (*fe.FECompTotXRequestResponse, error) {
 	// Obtener Auth
 	authData, err := wsaa.GetAuth(ServiceID)
 	if err != nil {
 		return nil, err
 	}
 	// Datos
-	structSend := fe.FECompUltimoAutorizado{Auth: auth.FEAuthRequest{
+	structSend := fe.FECompTotXRequest{Auth: auth.FEAuthRequest{
 		Token: authData.Token,
 		Sign:  authData.Sign,
 		Cuit:  authData.Cuit,
-	},
-	PtoVta: ptoVta,
-	CbteTipo: cbteTipo,
-}
+	}}
 	// Request
-	return request[fe.FECompUltimoAutorizado, fe.FECompUltimoAutorizadoResponse](structSend)
+	return request[fe.FECompTotXRequest, fe.FECompTotXRequestResponse](structSend)
 }

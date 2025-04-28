@@ -6,21 +6,21 @@ import (
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/fecaea"
 )
 
-func FECAEAConsultar(periodo int, orden int16) (*fecaea.FECAEAConsultarResponse, error) {
+func FECAEASinMovimientoConsultar(caea *string, ptoVta int) (*fecaea.FECAEASinMovimientoConsultarResponse, error) {
 	// Obtener Auth
 	authData, err := wsaa.GetAuth(ServiceID)
 	if err != nil {
 		return nil, err
 	}
 	// Datos
-	structSend := fecaea.FECAEAConsultar{Auth: auth.FEAuthRequest{
+	structSend := fecaea.FECAEASinMovimientoConsultar{Auth: auth.FEAuthRequest{
 		Token: authData.Token,
 		Sign:  authData.Sign,
 		Cuit:  authData.Cuit,
 	},
-		Periodo: periodo,
-		Orden:   orden,
+		CAEA:   caea,
+		PtoVta: ptoVta,
 	}
 	// Request
-	return request[fecaea.FECAEAConsultar, fecaea.FECAEAConsultarResponse](structSend)
+	return request[fecaea.FECAEASinMovimientoConsultar, fecaea.FECAEASinMovimientoConsultarResponse](structSend)
 }

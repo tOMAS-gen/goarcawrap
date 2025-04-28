@@ -56,3 +56,4 @@ func SendSoapRequest(xmlRequestBody string, urlApi string) (string, error) {
 	// 8. Devolver el cuerpo de la respuesta como string
 	return responseBodyString, nil
 }
+

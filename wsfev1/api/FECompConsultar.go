@@ -3,24 +3,24 @@ package wsfev1_api
 import (
 	"github.com/tOMAS-gen/goarcawrap/wsaa"
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/auth"
+	"github.com/tOMAS-gen/goarcawrap/wsfev1/common"
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/fe"
 )
 
-func FECompUltimoAutorizado(ptoVta int, cbteTipo int) (*fe.FECompUltimoAutorizadoResponse, error) {
+func FECompConsultar(feCompConsReq *common.FECompConsultaReq) (*fe.FECompConsultarResponse, error) {
 	// Obtener Auth
 	authData, err := wsaa.GetAuth(ServiceID)
 	if err != nil {
 		return nil, err
 	}
 	// Datos
-	structSend := fe.FECompUltimoAutorizado{Auth: auth.FEAuthRequest{
+	structSend := fe.FECompConsultar{Auth: auth.FEAuthRequest{
 		Token: authData.Token,
 		Sign:  authData.Sign,
 		Cuit:  authData.Cuit,
 	},
-	PtoVta: ptoVta,
-	CbteTipo: cbteTipo,
-}
+		FeCompConsReq: feCompConsReq,
+	}
 	// Request
-	return request[fe.FECompUltimoAutorizado, fe.FECompUltimoAutorizadoResponse](structSend)
+	return request[fe.FECompConsultar, fe.FECompConsultarResponse](structSend)
 }

@@ -11,6 +11,16 @@ const (
 	Header = `<?xml version="1.0" encoding="UTF-8"?>` + "\n"
 )
 
+// Envelope genérico para cualquier respuesta SOAP
+type Envelope[T any] struct {
+	Body Body[T] `xml:"Body"`
+}
+
+// Body contiene el contenido del cuerpo del mensaje SOAP
+type Body[T any] struct {
+	Content T `xml:",any"` // Usa ",any" para capturar cualquier contenido
+}
+
 // EnvelopeSOAP12 representa la estructura principal SOAP 1.2
 type EnvelopeSOAP12 struct {
 	XMLName xml.Name   `xml:"soap12:Envelope"`

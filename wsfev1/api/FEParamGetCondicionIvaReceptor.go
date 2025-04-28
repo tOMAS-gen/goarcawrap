@@ -6,21 +6,20 @@ import (
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/fe"
 )
 
-func FECompUltimoAutorizado(ptoVta int, cbteTipo int) (*fe.FECompUltimoAutorizadoResponse, error) {
+func FEParamGetCondicionIvaReceptor(claseCmp *string) (*fe.FEParamGetCondicionIvaReceptorResponse, error) {
 	// Obtener Auth
 	authData, err := wsaa.GetAuth(ServiceID)
 	if err != nil {
 		return nil, err
 	}
 	// Datos
-	structSend := fe.FECompUltimoAutorizado{Auth: auth.FEAuthRequest{
+	structSend := fe.FEParamGetCondicionIvaReceptor{Auth: auth.FEAuthRequest{
 		Token: authData.Token,
 		Sign:  authData.Sign,
 		Cuit:  authData.Cuit,
 	},
-	PtoVta: ptoVta,
-	CbteTipo: cbteTipo,
-}
+		ClaseCmp: claseCmp,
+	}
 	// Request
-	return request[fe.FECompUltimoAutorizado, fe.FECompUltimoAutorizadoResponse](structSend)
+	return request[fe.FEParamGetCondicionIvaReceptor, fe.FEParamGetCondicionIvaReceptorResponse](structSend)
 }

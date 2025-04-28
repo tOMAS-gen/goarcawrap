@@ -78,3 +78,5 @@ type FECAEAConsultarResponse struct {
 		Events    *[]Evt     `xml:"Events>Evt"`
 	} `xml:"FECAEAConsultarResult"`
 }
+
+

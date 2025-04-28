@@ -3,24 +3,24 @@ package wsfev1_api
 import (
 	"github.com/tOMAS-gen/goarcawrap/wsaa"
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/auth"
+	"github.com/tOMAS-gen/goarcawrap/wsfev1/common"
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/fecaea"
 )
 
-func FECAEAConsultar(periodo int, orden int16) (*fecaea.FECAEAConsultarResponse, error) {
+func FECAEARegInformativo(feCAEARegInfReq *common.FECAEARequest) (*fecaea.FECAEARegInformativoResponse, error) {
 	// Obtener Auth
 	authData, err := wsaa.GetAuth(ServiceID)
 	if err != nil {
 		return nil, err
 	}
 	// Datos
-	structSend := fecaea.FECAEAConsultar{Auth: auth.FEAuthRequest{
+	structSend := fecaea.FECAEARegInformativo{Auth: auth.FEAuthRequest{
 		Token: authData.Token,
 		Sign:  authData.Sign,
 		Cuit:  authData.Cuit,
 	},
-		Periodo: periodo,
-		Orden:   orden,
+		FeCAEARegInfReq: feCAEARegInfReq,
 	}
 	// Request
-	return request[fecaea.FECAEAConsultar, fecaea.FECAEAConsultarResponse](structSend)
+	return request[fecaea.FECAEARegInformativo, fecaea.FECAEARegInformativoResponse](structSend)
 }
