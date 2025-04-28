@@ -1,0 +1,37 @@
+# Binarios compilados
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+main/
+
+# Archivo de salida del comando 'go build'
+# Reemplaza 'goarcawrap' si tu ejecutable tiene otro nombre
+goarcawrap
+goarcawrap.exe
+
+# Directorios de paquetes (si usas Go Modules, 'vendor' es común)
+vendor/
+
+# Archivos de herramientas de Go
+*.test
+*.prof
+
+# Archivos de configuración de IDEs y editores
+.idea/
+.vscode/
+*.swp
+*~
+*.bak
+*.tmp
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos generados por este script específico (opcional, pero buena práctica)
+ARCA/
+
+#
+test/
