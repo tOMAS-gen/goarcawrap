@@ -10,16 +10,16 @@ const (
 	KeyBits            = 2048                 // Tamaño de la clave RSA (mínimo 2048 para AFIP/ARCA)
 	ClientFileName     = "client.json"        // Nombre del archivo JSON
 	WSAAfileName       = "wsaa.json"          // Nombre del archivo JSON
-	// // production
-	// URL_wsaa             = "https://wsaa.afip.gov.ar/ws/services/LoginCms"
-	// URL_wsfe1            = "https://servicios1.afip.gov.ar/wsfev1/service.asmx"
-	// URL_ws_sr_padron_a13 = "https://aws.afip.gov.ar/sr-padron/webservices/personaServiceA13"
-	// URL_ws_sr_constancia_inscripcion = "https://aws.afip.gov.ar/sr-padron/webservices/personaServiceA5"
-	// testing/homologación
-	URL_wsaa = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms"
-	URL_wsfe1 = "https://wswhomo.afip.gov.ar/wsfev1/service.asmx"
-	URL_ws_sr_padron_a13 = "https://awshomo.afip.gov.ar/sr-padron/webservices/ersonaServiceA13"
-	URL_ws_sr_constancia_inscripcion = "https://awshomo.afip.gov.ar/sr-padron/webservices/personaServiceA5"
+	// production
+	URL_wsaa             = "https://wsaa.afip.gov.ar/ws/services/LoginCms"
+	URL_wsfe1            = "https://servicios1.afip.gov.ar/wsfev1/service.asmx"
+	URL_ws_sr_padron_a13 = "https://aws.afip.gov.ar/sr-padron/webservices/personaServiceA13"
+	URL_ws_sr_constancia_inscripcion = "https://aws.afip.gov.ar/sr-padron/webservices/personaServiceA5"
+	// // testing/homologación
+	// URL_wsaa = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms"
+	// URL_wsfe1 = "https://wswhomo.afip.gov.ar/wsfev1/service.asmx"
+	// URL_ws_sr_padron_a13 = "https://awshomo.afip.gov.ar/sr-padron/webservices/ersonaServiceA13"
+	// URL_ws_sr_constancia_inscripcion = "https://awshomo.afip.gov.ar/sr-padron/webservices/personaServiceA5"
 )
 
 type Client struct {
