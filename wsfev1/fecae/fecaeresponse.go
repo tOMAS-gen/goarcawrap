@@ -7,6 +7,6 @@ import (
 )
 
 type FECAESolicitarResponse struct {
-	XMLName xml.Name `xml:"http://ar.gov.afip.dif.FEV1/ FECAESolicitarResponse"`
+	XMLName              xml.Name              `xml:"http://ar.gov.afip.dif.FEV1/ FECAESolicitarResponse"`
 	FECAESolicitarResult *common.FECAEResponse `xml:"FECAEASolicitarResult,omitempty"`
 }

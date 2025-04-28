@@ -87,7 +87,7 @@ type Cotizacion struct {
 }
 
 type PtoVenta struct {
-	Nro         int     `xml:"Id"`
+	Nro         int     `xml:"Nro"`
 	EmisionTipo *string `xml:"EmisionTipo"`
 	Bloqueado   *string `xml:"Bloqueado"`
 	FchBaja     *string `xml:"FchBaja"`
@@ -95,6 +95,53 @@ type PtoVenta struct {
 
 type CbteTipo struct {
 	Id       int     `xml:"Id"`
+	Desc     *string `xml:"Desc"`
+	FchDesde *string `xml:"FchDesde"`
+	FchHasta *string `xml:"FchHasta"`
+}
+
+type ConceptoTipo struct {
+	Id       string  `xml:"Id"`
+	Desc     *string `xml:"Desc"`
+	FchDesde *string `xml:"FchDesde"`
+	FchHasta *string `xml:"FchHasta"`
+}
+
+type DocTipo struct {
+	Id       int     `xml:"Id"`
+	Desc     *string `xml:"Desc"`
+	FchDesde *string `xml:"FchDesde"`
+	FchHasta *string `xml:"FchHasta"`
+}
+
+type IvaTipo struct {
+	Id       *string `xml:"Id"`
+	Desc     *string `xml:"Desc"`
+	FchDesde *string `xml:"FchDesde"`
+	FchHasta *string `xml:"FchHasta"`
+}
+
+type Moneda struct {
+	Id       *string `xml:"Id"`
+	Desc     *string `xml:"Desc"`
+	FchDesde *string `xml:"FchDesde"`
+	FchHasta *string `xml:"FchHasta"`
+}
+
+type OpcionalTipo struct {
+	Id       *string `xml:"Id"`
+	Desc     *string `xml:"Desc"`
+	FchDesde *string `xml:"FchDesde"`
+	FchHasta *string `xml:"FchHasta"`
+}
+
+type PaisTipo struct {
+	Id   int16   `xml:"Id"`
+	Desc *string `xml:"Desc"`
+}
+
+type TributoTipo struct {
+	Id       *string `xml:"Id"`
 	Desc     *string `xml:"Desc"`
 	FchDesde *string `xml:"FchDesde"`
 	FchHasta *string `xml:"FchHasta"`

@@ -81,15 +81,15 @@ type FECompConsResponse struct {
 }
 
 type FERegXReqResponse struct {
-	RegXReq int `xml:"RegXReq"`
+	RegXReq int         `xml:"RegXReq"`
 	Errors  *ArrayOfErr `xml:"Errors,omitempty"`
 	Events  *ArrayOfEvt `xml:"Events,omitempty"`
 }
 
 type FERecuperaLastCbteResponse struct {
-	PtoVta   int `xml:"PtoVta"`
-	CbteTipo int `xml:"CbteTipo"`
-	CbteNro  int `xml:"CbteNro"`
+	PtoVta   int         `xml:"PtoVta"`
+	CbteTipo int         `xml:"CbteTipo"`
+	CbteNro  int         `xml:"CbteNro"`
 	Errors   *ArrayOfErr `xml:"Errors,omitempty"`
 	Events   *ArrayOfEvt `xml:"Events,omitempty"`
 }
@@ -108,8 +108,8 @@ type CondicionIvaReceptorResponse struct {
 
 type FECotizacionResponse struct {
 	ResultGet *Cotizacion `xml:"ResultGet,omitempty"`
-	Errors    *ArrayOfErr        `xml:"Errors,omitempty"`
-	Events    *ArrayOfEvt        `xml:"Events,omitempty"`
+	Errors    *ArrayOfErr `xml:"Errors,omitempty"`
+	Events    *ArrayOfEvt `xml:"Events,omitempty"`
 }
 
 type FEPtoVentaResponse struct {
@@ -122,4 +122,46 @@ type CbteTipoResponse struct {
 	ResultGet *ArrayOfCbteTipo `xml:"ResultGet,omitempty"`
 	Errors    *ArrayOfErr      `xml:"Errors,omitempty"`
 	Events    *ArrayOfEvt      `xml:"Events,omitempty"`
+}
+
+type ConceptoTipoResponse struct {
+	ResultGet *ArrayOfConceptoTipo `xml:"ResultGet,omitempty"`
+	Errors    *ArrayOfErr          `xml:"Errors,omitempty"`
+	Events    *ArrayOfEvt          `xml:"Events,omitempty"`
+}
+
+type DocTipoResponse struct {
+	ResultGet *ArrayOfDocTipo `xml:"ResultGet,omitempty"`
+	Errors    *ArrayOfErr     `xml:"Errors,omitempty"`
+	Events    *ArrayOfEvt     `xml:"Events,omitempty"`
+}
+
+type IvaTipoResponse struct {
+	ResultGet *ArrayOfIvaTipo `xml:"ResultGet,omitempty"`
+	Errors    *ArrayOfErr     `xml:"Errors,omitempty"`
+	Events    *ArrayOfEvt     `xml:"Events,omitempty"`
+}
+
+type MonedaResponse struct {
+	ResultGet *ArrayOfMoneda `xml:"ResultGet,omitempty"`
+	Errors    *ArrayOfErr    `xml:"Errors,omitempty"`
+	Events    *ArrayOfEvt    `xml:"Events,omitempty"`
+}
+
+type OpcionalTipoResponse struct {
+	ResultGet *ArrayOfOpcionalTipo `xml:"ResultGet,omitempty"`
+	Errors    *ArrayOfErr          `xml:"Errors,omitempty"`
+	Events    *ArrayOfEvt          `xml:"Events,omitempty"`
+}
+
+type FEPaisResponse struct {
+	ResultGet *ArrayOfPaisTipo `xml:"ResultGet,omitempty"`
+	Errors    *ArrayOfErr      `xml:"Errors,omitempty"`
+	Events    *ArrayOfEvt      `xml:"Events,omitempty"`
+}
+
+type FETributoResponse struct {
+	ResultGet *ArrayOfTributoTipo `xml:"ResultGet,omitempty"`
+	Errors    *ArrayOfErr         `xml:"Errors,omitempty"`
+	Events    *ArrayOfEvt         `xml:"Events,omitempty"`
 }

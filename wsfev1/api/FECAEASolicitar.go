@@ -2,7 +2,6 @@ package wsfev1_api
 
 import (
 	"github.com/tOMAS-gen/goarcawrap/wsaa"
-	"github.com/tOMAS-gen/goarcawrap/wsfev1/auth"
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/fecaea"
 )
 
@@ -13,11 +12,7 @@ func FECAEASolicitar(periodo int, orden int16) (*fecaea.FECAEASolicitarResponse,
 		return nil, err
 	}
 	// Datos
-	structSend := fecaea.FECAEASolicitar{Auth: auth.FEAuthRequest{
-		Token: authData.Token,
-		Sign:  authData.Sign,
-		Cuit:  authData.Cuit,
-	},
+	structSend := fecaea.FECAEASolicitar{Auth: *authData,
 		Periodo: periodo,
 		Orden: orden,
 	}

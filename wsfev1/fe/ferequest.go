@@ -56,3 +56,38 @@ type FEParamGetTiposCbte struct {
 	XMLName xml.Name           `xml:"http://ar.gov.afip.dif.FEV1/ FEParamGetTiposCbte"`
 	Auth    auth.FEAuthRequest `xml:"Auth"`
 }
+
+type FEParamGetTiposConcepto struct {
+	XMLName xml.Name           `xml:"http://ar.gov.afip.dif.FEV1/ FEParamGetTiposConcepto"`
+	Auth    auth.FEAuthRequest `xml:"Auth"`
+}
+
+type FEParamGetTiposDoc struct {
+	XMLName xml.Name           `xml:"http://ar.gov.afip.dif.FEV1/ FEParamGetTiposDoc"`
+	Auth    auth.FEAuthRequest `xml:"Auth"`
+}
+
+type FEParamGetTiposIva struct {
+	XMLName xml.Name           `xml:"http://ar.gov.afip.dif.FEV1/ FEParamGetTiposIva"`
+	Auth    auth.FEAuthRequest `xml:"Auth"`
+}
+
+type FEParamGetTiposMonedas struct {
+	XMLName xml.Name           `xml:"http://ar.gov.afip.dif.FEV1/ FEParamGetTiposMonedas"`
+	Auth    auth.FEAuthRequest `xml:"Auth"`
+}
+
+type FEParamGetTiposOpcional struct {
+	XMLName xml.Name           `xml:"http://ar.gov.afip.dif.FEV1/ FEParamGetTiposOpcional"`
+	Auth    auth.FEAuthRequest `xml:"Auth"`
+}
+
+type FEParamGetTiposPaises struct {
+	XMLName xml.Name           `xml:"http://ar.gov.afip.dif.FEV1/ FEParamGetTiposPaises"`
+	Auth    auth.FEAuthRequest `xml:"Auth"`
+}
+
+type FEParamGetTiposTributos struct {
+	XMLName xml.Name           `xml:"http://ar.gov.afip.dif.FEV1/ FEParamGetTiposTributos"`
+	Auth    auth.FEAuthRequest `xml:"Auth"`
+}

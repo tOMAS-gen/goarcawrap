@@ -4,7 +4,7 @@ import (
 	"github.com/tOMAS-gen/goarcawrap/certificate"
 	"github.com/tOMAS-gen/goarcawrap/data"
 	"github.com/tOMAS-gen/goarcawrap/model"
-	wsfev1_model "github.com/tOMAS-gen/goarcawrap/wsfev1/model"
+	"github.com/tOMAS-gen/goarcawrap/wsfev1/auth"
 )
 
 func GenerateCertificate(client *model.Client) error {
@@ -41,7 +41,7 @@ func GetWSAA(serviceID string) (*model.WSAA, error) {
 	return get(serviceID)
 }
 
-func GetAuth(serviceID string) (*wsfev1_model.Auth, error) {
+func GetAuth(serviceID string) (*auth.FEAuthRequest, error) {
 	// Obtener WSAA
 	wsaa, err := GetWSAA(serviceID)
 	if err != nil {
@@ -53,7 +53,7 @@ func GetAuth(serviceID string) (*wsfev1_model.Auth, error) {
 		return nil, err
 	}
 	// Generar Auth
-	return &wsfev1_model.Auth{
+	return &auth.FEAuthRequest{
 		Token: wsaa.Token,
 		Sign:  wsaa.Sign,
 		Cuit:  client.CUIT,

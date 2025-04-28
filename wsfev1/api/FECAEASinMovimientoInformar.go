@@ -2,7 +2,6 @@ package wsfev1_api
 
 import (
 	"github.com/tOMAS-gen/goarcawrap/wsaa"
-	"github.com/tOMAS-gen/goarcawrap/wsfev1/auth"
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/fecaea"
 )
 
@@ -13,11 +12,7 @@ func FECAEASinMovimientoInformar(caea *string, ptoVta int) (*fecaea.FECAEASinMov
 		return nil, err
 	}
 	// Datos
-	structSend := fecaea.FECAEASinMovimientoInformar{Auth: auth.FEAuthRequest{
-		Token: authData.Token,
-		Sign:  authData.Sign,
-		Cuit:  authData.Cuit,
-	},
+	structSend := fecaea.FECAEASinMovimientoInformar{Auth: *authData,
 		CAEA:   caea,
 		PtoVta: ptoVta,
 	}

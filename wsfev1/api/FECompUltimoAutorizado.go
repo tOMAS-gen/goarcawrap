@@ -2,7 +2,6 @@ package wsfev1_api
 
 import (
 	"github.com/tOMAS-gen/goarcawrap/wsaa"
-	"github.com/tOMAS-gen/goarcawrap/wsfev1/auth"
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/fe"
 )
 
@@ -13,11 +12,7 @@ func FECompUltimoAutorizado(ptoVta int, cbteTipo int) (*fe.FECompUltimoAutorizad
 		return nil, err
 	}
 	// Datos
-	structSend := fe.FECompUltimoAutorizado{Auth: auth.FEAuthRequest{
-		Token: authData.Token,
-		Sign:  authData.Sign,
-		Cuit:  authData.Cuit,
-	},
+	structSend := fe.FECompUltimoAutorizado{Auth: *authData,
 	PtoVta: ptoVta,
 	CbteTipo: cbteTipo,
 }

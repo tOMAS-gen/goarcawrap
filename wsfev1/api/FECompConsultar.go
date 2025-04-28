@@ -2,7 +2,6 @@ package wsfev1_api
 
 import (
 	"github.com/tOMAS-gen/goarcawrap/wsaa"
-	"github.com/tOMAS-gen/goarcawrap/wsfev1/auth"
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/common"
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/fe"
 )
@@ -14,11 +13,7 @@ func FECompConsultar(feCompConsReq *common.FECompConsultaReq) (*fe.FECompConsult
 		return nil, err
 	}
 	// Datos
-	structSend := fe.FECompConsultar{Auth: auth.FEAuthRequest{
-		Token: authData.Token,
-		Sign:  authData.Sign,
-		Cuit:  authData.Cuit,
-	},
+	structSend := fe.FECompConsultar{Auth: *authData,
 		FeCompConsReq: feCompConsReq,
 	}
 	// Request

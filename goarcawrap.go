@@ -21,22 +21,20 @@ import (
 	ws_sr_padrom_a13_model "github.com/tOMAS-gen/goarcawrap/ws_sr_padrom_a13/model"
 	"github.com/tOMAS-gen/goarcawrap/wsaa"
 	wsfev1_api "github.com/tOMAS-gen/goarcawrap/wsfev1/api"
+	"github.com/tOMAS-gen/goarcawrap/wsfev1/auth"
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/common"
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/fe"
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/fecae"
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/fecaea"
-	wsfev1_model "github.com/tOMAS-gen/goarcawrap/wsfev1/model"
 )
 
 // Sector de funciones
 type a_functions struct {
 }
 
-// Funcione
-func Function() a_functions {
-	// Aquí podrías obtener datos de algún lado
-	info := a_functions{}
-	return info
+// Método que devuelve el funciones (para encadenamiento)
+func Function() *a_functions {
+	return &a_functions{}
 }
 
 // Obtener datos del cliente
@@ -148,24 +146,45 @@ func (wsfev1) FEParamGetTiposCbte() (*fe.FEParamGetTiposCbteResponse, error) {
 
 // FEParamGetTiposConcepto
 // Recupera el listado de identificadores para el campo Concepto.
+func (wsfev1) FEParamGetTiposConcepto() (*fe.FEParamGetTiposConceptoResponse, error) {
+	return wsfev1_api.FEParamGetTiposConcepto()
+}
 
 // FEParamGetTiposDoc
 // Recupera el listado de Tipos de Documentos utilizables en servicio de autorización.
+func (wsfev1) FEParamGetTiposDoc() (*fe.FEParamGetTiposDocResponse, error) {
+	return wsfev1_api.FEParamGetTiposDoc()
+}
 
 // FEParamGetTiposIva
 // Recupera el listado de Tipos de Iva utilizables en servicio de autorización.
+func (wsfev1) FEParamGetTiposIva() (*fe.FEParamGetTiposIvaResponse, error) {
+	return wsfev1_api.FEParamGetTiposIva()
+}
 
 // FEParamGetTiposMonedas
 // Recupera el listado de monedas utilizables en servicio de autorización
+func (wsfev1) FEParamGetTiposMonedas() (*fe.FEParamGetTiposMonedasResponse, error) {
+	return wsfev1_api.FEParamGetTiposMonedas()
+}
 
 // FEParamGetTiposOpcional
 // Recupera el listado de identificadores para los campos Opcionales
+func (wsfev1) FEParamGetTiposOpcional() (*fe.FEParamGetTiposOpcionalResponse, error) {
+	return wsfev1_api.FEParamGetTiposOpcional()
+}
 
 // FEParamGetTiposPaises
 // Recupera el listado de los diferente paises que pueden ser utilizados en el servicio de autorizacion
+func (wsfev1) FEParamGetTiposPaises() (*fe.FEParamGetTiposPaisesResponse, error) {
+	return wsfev1_api.FEParamGetTiposPaises()
+}
 
 // FEParamGetTiposTributos
 // Recupera el listado de los diferente tributos que pueden ser utilizados en el servicio de autorizacion
+func (wsfev1) FEParamGetTiposTributos() (*fe.FEParamGetTiposTributosResponse, error) {
+	return wsfev1_api.FEParamGetTiposTributos()
+}
 
 //
 // ---------------------------------------------------------------------------------------------
@@ -175,11 +194,9 @@ func (wsfev1) FEParamGetTiposCbte() (*fe.FEParamGetTiposCbteResponse, error) {
 type a_ws_sr_constancia_inscripcion struct {
 }
 
-// ws_sr_constancia_inscripcion
-func ConstanciaInscripcion() a_ws_sr_constancia_inscripcion {
-	// Aquí podrías obtener datos de algún lado
-	info := a_ws_sr_constancia_inscripcion{}
-	return info
+// Método que devuelve el servicio (para encadenamiento)
+func ConstanciaInscripcion() *a_ws_sr_constancia_inscripcion {
+	return &a_ws_sr_constancia_inscripcion{}
 }
 
 // Obtener datos
@@ -205,11 +222,9 @@ func (a_ws_sr_constancia_inscripcion) GetPersonListV2(cuit_cuil []string) (*ws_s
 type a_ws_sr_padrom_a13 struct {
 }
 
-// ws_sr_padrom_a13
-func PadromA13() a_ws_sr_padrom_a13 {
-	// Aquí podrías obtener datos de algún lado
-	info := a_ws_sr_padrom_a13{}
-	return info
+// Método que devuelve el servicio (para encadenamiento)
+func PadromA13() *a_ws_sr_padrom_a13 {
+	return & a_ws_sr_padrom_a13{}
 }
 
 // Obtener CUIT/CUIL
@@ -230,11 +245,9 @@ func (a_ws_sr_padrom_a13) GetPerson(cuit_cuil string) (*ws_sr_padrom_a13_model.P
 type a_wsaa struct {
 }
 
-// wsaa
-func WSAA() a_wsaa {
-	// Aquí podrías obtener datos de algún lado
-	info := a_wsaa{}
-	return info
+// Método que devuelve el servicio (para encadenamiento)
+func WSAA() *a_wsaa {
+	return &a_wsaa{}
 }
 
 // Generar credenciales
@@ -258,6 +271,6 @@ func (a_wsaa) GetWSAA(serviceID string) (*model.WSAA, error) {
 }
 
 // Autenticación WSAA
-func (a_wsaa) GetAuth(serviceID string) (*wsfev1_model.Auth, error) {
+func (a_wsaa) GetAuth(serviceID string) (*auth.FEAuthRequest, error) {
 	return wsaa.GetAuth(serviceID)
 }

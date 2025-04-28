@@ -12,21 +12,21 @@ type FECAEAConsultarResponse struct {
 }
 
 type FECAEARegInformativoResponse struct {
-	XMLName xml.Name `xml:"http://ar.gov.afip.dif.FEV1/ FECAEARegInformativoResponse"`
+	XMLName                    xml.Name               `xml:"http://ar.gov.afip.dif.FEV1/ FECAEARegInformativoResponse"`
 	FECAEARegInformativoResult *common.FECAEAResponse `xml:"FECAEARegInformativoResult,omitempty"`
 }
 
 type FECAEASinMovimientoConsultarResponse struct {
-	XMLName xml.Name `xml:"http://ar.gov.afip.dif.FEV1/ FECAEASinMovimientoConsultarResponse"`
+	XMLName                            xml.Name                         `xml:"http://ar.gov.afip.dif.FEV1/ FECAEASinMovimientoConsultarResponse"`
 	FECAEASinMovimientoConsultarResult *common.FECAEASinMovConsResponse `xml:"FECAEASinMovimientoConsultarResult,omitempty"`
 }
 
 type FECAEASinMovimientoInformarResponse struct {
-	XMLName xml.Name `xml:"http://ar.gov.afip.dif.FEV1/ FECAEASinMovimientoConsultarResponse"`
+	XMLName                           xml.Name                     `xml:"http://ar.gov.afip.dif.FEV1/ FECAEASinMovimientoConsultarResponse"`
 	FECAEASinMovimientoInformarResult *common.FECAEASinMovResponse `xml:"FECAEASinMovimientoInformarResult,omitempty"`
 }
 
 type FECAEASolicitarResponse struct {
-	XMLName xml.Name `xml:"http://ar.gov.afip.dif.FEV1/ FECAEASolicitarResponse"`
+	XMLName               xml.Name                  `xml:"http://ar.gov.afip.dif.FEV1/ FECAEASolicitarResponse"`
 	FECAEASolicitarResult *common.FECAEAGetResponse `xml:"FECAEASolicitarResult,omitempty"`
 }

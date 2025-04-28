@@ -5,14 +5,14 @@ import (
 	"github.com/tOMAS-gen/goarcawrap/wsfev1/fe"
 )
 
-func FEParamGetPtosVenta() (*fe.FEParamGetPtosVentaResponse, error) {
+func FEParamGetTiposPaises() (*fe.FEParamGetTiposPaisesResponse, error) {
 	// Obtener Auth
 	authData, err := wsaa.GetAuth(ServiceID)
 	if err != nil {
 		return nil, err
 	}
 	// Datos
-	structSend := fe.FEParamGetPtosVenta{Auth: *authData}
+	structSend := fe.FEParamGetTiposPaises{Auth: *authData}
 	// Request
-	return request[fe.FEParamGetPtosVenta, fe.FEParamGetPtosVentaResponse](structSend)
+	return request[fe.FEParamGetTiposPaises, fe.FEParamGetTiposPaisesResponse](structSend)
 }

@@ -71,3 +71,31 @@ type ArrayOfPtoVenta struct {
 type ArrayOfCbteTipo struct {
 	CbteTipo *[]CbteTipo `xml:"CbteTipo"`
 }
+
+type ArrayOfConceptoTipo struct {
+	ConceptoTipo *[]ConceptoTipo `xml:"ConceptoTipo"`
+}
+
+type ArrayOfDocTipo struct {
+	DocTipo *[]DocTipo `xml:"DocTipo"`
+}
+
+type ArrayOfIvaTipo struct {
+	IvaTipo *[]IvaTipo `xml:"IvaTipo"`
+}
+
+type ArrayOfMoneda struct {
+	Moneda *[]Moneda `xml:"Moneda"`
+}
+
+type ArrayOfOpcionalTipo struct {
+	OpcionalTipo *[]OpcionalTipo `xml:"OpcionalTipo"`
+}
+
+type ArrayOfPaisTipo struct {
+	PaisTipo *[]PaisTipo `xml:"PaisTipo"`
+}
+
+type ArrayOfTributoTipo struct {
+	TributoTipo *[]TributoTipo `xml:"TributoTipo"`
+}
